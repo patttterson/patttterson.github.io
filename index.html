@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <title>Mochbot Countdown</title>
+  <meta name="title" content="Mochbot Countdown" />
+  <meta name="description" content="if you dont know what this is dont ask lmfao" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://moch.minji.love/" />
+  <meta property="og:title" content="Mochbot Countdown" />
+  <meta property="og:description" content="if you dont know what this is dont ask lmfao" />
+  <meta property="og:image" content="/lmao.png" />
+
+  <!-- X (Twitter) -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://moch.minji.love/" />
+  <meta property="twitter:title" content="Mochbot Countdown" />
+  <meta property="twitter:description" content="if you dont know what this is dont ask lmfao" />
+  <meta property="twitter:image" content="/lmao.png" />
+  <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-neutral-900">
+  <div class="flex flex-col justify-center items-center h-screen font-mono">
+    <div id="countdown" 
+      class="text-9xl text-center bg-gradient-to-r from-[#e76c6d] via-rose-400 to-orange-300 bg-clip-text text-transparent">
+      Loading...
+    </div>
+  </div>
+
+  <script>
+    function updateCountdown() {
+      const targetTimestamp = 1759940580;
+      const now = Math.floor(Date.now() / 1000);
+      const timeLeft = targetTimestamp - now;
+
+      if (timeLeft <= 0) {
+        document.getElementById('countdown').innerHTML = "Time's up.";
+        return;
+      }
+
+      const days = Math.floor(timeLeft / (24 * 60 * 60));
+      const hours = Math.floor((timeLeft % (24 * 60 * 60)) / (60 * 60));
+      const minutes = Math.floor((timeLeft % (60 * 60)) / 60);
+      const seconds = timeLeft % 60;
+
+      const formatTime = (time) => time.toString().padStart(2, '0');
+
+      document.getElementById('countdown').innerHTML = 
+        `${formatTime(days)}:${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+
+</html>
